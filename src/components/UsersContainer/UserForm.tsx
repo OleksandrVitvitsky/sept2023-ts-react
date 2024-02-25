@@ -9,7 +9,7 @@ const UserForm:FC<IProps> = ({changeTrigger}) => {
 
     const {reset,register,handleSubmit,setValue} = useForm<IUser>();
     const save:SubmitHandler<IUser>  = async (user) => {
-            await userService.create(user);
+            await userService.create(user).then(({data}) => console.log(data));
         changeTrigger();
         reset()
     }
