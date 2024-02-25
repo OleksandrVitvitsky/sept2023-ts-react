@@ -10,7 +10,7 @@ interface IProps {
 
 const Users:FC<IProps> = ({users}) => {
     return (
-        <div className={"css.usersContainer"}>
+        <div className={"usersContainer"}>
             {users.map(user => <User key ={user.id} user={user}/>)}
         </div>
     );
