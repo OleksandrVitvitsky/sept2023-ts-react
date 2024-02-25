@@ -14,10 +14,12 @@ const User:FC<IProps> =  ({user}) => {
             <div> name: {name}</div>
             <div> username: {username}</div>
             <div> email: {email}</div>
-            <button>update</button>
-            <button>delete</button>
+            {/*<button>update</button>*/}
+            {/*<button>delete</button>*/}
         </div>
     );
 };
 
-export {User};
+export {
+    User
+};

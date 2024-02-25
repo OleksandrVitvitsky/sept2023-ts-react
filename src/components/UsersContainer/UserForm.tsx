@@ -10,7 +10,7 @@ interface IProps{
 }
 const UserForm:FC<IProps> = ({changeTrigger}) => {
 
-    const {formState:{isValid,errors},reset,register,handleSubmit,setValue} = useForm<IUser>(
+    const {formState:{isValid,errors},reset,register,handleSubmit} = useForm<IUser>(
         {
             mode: 'all',
             resolver:joiResolver(userValidator)
