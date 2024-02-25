@@ -1,7 +1,10 @@
+import {FC} from "react";
+
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IUser} from "../../interfaces/userInterface";
 import {userService} from "../../services/userService";
-import {FC} from "react";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {userValidator} from "../../validators/userValidator";
 interface IProps{
     changeTrigger: () => void;
 }
@@ -9,7 +12,8 @@ const UserForm:FC<IProps> = ({changeTrigger}) => {
 
     const {formState:{isValid,errors},reset,register,handleSubmit,setValue} = useForm<IUser>(
         {
-            mode: 'all'
+            mode: 'all',
+            resolver:joiResolver(userValidator)
         }
     );
     const save:SubmitHandler<IUser>  = async (user) => {
@@ -21,25 +25,13 @@ const UserForm:FC<IProps> = ({changeTrigger}) => {
 
     return (
         <form onSubmit={handleSubmit(save)}>
-            <input type="text" placeholder={"name"} {...register("name",{
-                pattern: {
-                    value:/^[a-zA-Zа-яА-яёЁіІїЇ]{1,30}$/,
-                    message: 'min 1 max 30 character'
-                }
-            })}/>
-            <input type="text" placeholder={"username"} {...register("username",{
-                pattern: {
-                    value:/^[a-zA-Zа-яА-яёЁіІїЇ]{1,30}$/,
-                    message: 'min 1 max 30 character'
-                }
-            })}/>
-            <input type="text" placeholder={"email"} {...register("email",{
-                pattern: {
-                    value:/^[a-zA-Zа-яА-яёЁіІїЇ]{1,50}$/,
-                    message: 'min 1 max 50 character'
-                }
-            })}/>
+            <input type="text" placeholder={"name"} {...register("name")}/>
+            <input type="text" placeholder={"username"} {...register("username")}/>
+            <input type="text" placeholder={"email"} {...register("email")}/>
+
             <button disabled={!isValid}>Create</button>
+
+
             {errors.name && <div>{errors.name.message}</div>}
             {errors.username && <div>{errors.username.message}</div>}
             {errors.email && <div>{errors.email.message}</div>}
