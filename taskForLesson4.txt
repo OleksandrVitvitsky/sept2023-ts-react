@@ -1,6 +1,6 @@
 
 реалізувати 3 маршрути
-todos - при переході на який тягнуться всі todo з https://jsonplaceholder.typicode.com/todos
+todos - при переході на який тягнуться всі //todo з https://jsonplaceholder.typicode.com/todos
 
 albums - при переході на який тягнуться всі альбоми з https://jsonplaceholder.typicode.com/albums
 
