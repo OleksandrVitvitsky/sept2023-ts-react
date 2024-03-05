@@ -7,7 +7,7 @@ import {carService} from "../../services/carService";
 import {IState} from "../../interfaces";
 import {carsActions} from "../../store/slices";
 
-
+import css from './carForm.module.css';
 
 const CarForm:FC = () => {
     const {reset, handleSubmit,register,
@@ -38,11 +38,11 @@ const CarForm:FC = () => {
          reset();
     }
     return (
-        <form onSubmit={handleSubmit(carForUpdate ? update : save)}>
-            <input type="text" placeholder={'brand'} {...register('brand')}/>
-            <input type="text" placeholder={'price'} {...register('price')}/>
-            <input type="text" placeholder={'year'} {...register('year')}/>
-            <button disabled={false}>{carForUpdate ? 'update' : 'save'} </button>
+        <form className={css.form} onSubmit={handleSubmit(carForUpdate ? update : save)}>
+            <input className={css.input} type="text" placeholder={'brand'} {...register('brand')}/>
+            <input className={css.input} type="text" placeholder={'price'} {...register('price')}/>
+            <input className={css.input} type="text" placeholder={'year'} {...register('year')}/>
+            <button className={css.button} disabled={false}>{carForUpdate ? 'update' : 'save'} </button>
         </form>
     );
 };

@@ -2,8 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 
 
-import {ICarState} from "../../interfaces/carStateInterface";
-import {boolean} from "joi";
+import {ICarState} from "../../interfaces";
+
 
 
 const initialState :ICarState  =  {
