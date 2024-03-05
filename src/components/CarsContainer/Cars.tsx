@@ -1,22 +1,18 @@
 import {FC} from "react";
 
-import {ICar} from "../../interfaces/carInterface";
+import {ICar} from "../../interfaces";
 import {Car} from "./Car";
-import {ISetState} from "../../types/setState";
-
 
 
 interface IProps {
-    cars:ICar[],
-    setCarUpdate: ISetState<ICar>
-    changeTrigger: () => void;
+    cars:ICar[]
 }
 
 
-const Cars:FC<IProps> = ({cars,setCarUpdate, changeTrigger}) => {
+const Cars:FC<IProps> = ({cars}) => {
     return (
         <div>
-            {cars.map(car => <Car key={car.id} car={car} setCarUpdate = {setCarUpdate}  changeTrigger = {changeTrigger}/>)}
+            {cars.map(car => <Car key={car.id} car={car}/>)}
         </div>
     );
 };

@@ -1,32 +1,38 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
-import {ICar} from "../../interfaces/carInterface";
 
 import {CarForm} from "./CarForm";
 import {Cars} from "./Cars";
 import {carService} from "../../services/carService";
+import {carsActions} from "../../store/slices";
+import {IState} from "../../interfaces";
 
 
-;
+
 
 const CarsContainer = () => {
 
-    const [cars,setCars]= useState<ICar[]>([])
-    const [trigger, setTrigger] = useState<boolean>(null)
-    const [carUpdate,setCarUpdate] = useState<ICar>(null);
+    const dispatch = useDispatch();
 
-    useEffect(() => {carService.getAll().then(({data}) => setCars(data))
-    }, [trigger]);
+    const {cars,trigger} = useSelector((state: IState) => state.cars);
 
-    const changeTrigger = () => {
-        setTrigger(prevState => !prevState)
-    }
+
+    useEffect(() => {carService.getAll().then(({data}) => dispatch(carsActions.setAllcars(data)))
+    }, [trigger,dispatch]);
+
+    // const changeTrigger = () => {
+    //     setTrigger(prevState => !prevState)
+    // }
 
     return (
         <div>
-            <CarForm changeTrigger={changeTrigger} carUpdate={carUpdate} setCarUpdate={setCarUpdate}/>
+            {/*<CarForm changeTrigger={changeTrigger} carUpdate={carUpdate} setCarUpdate={setCarUpdate}/>*/}
+            <CarForm/>
             <hr/>
-            <Cars cars={cars} setCarUpdate = {setCarUpdate}  changeTrigger={changeTrigger}/>
+            <hr/>
+            <hr/>
+            <Cars cars={cars}/>
         </div>
     );
 };
