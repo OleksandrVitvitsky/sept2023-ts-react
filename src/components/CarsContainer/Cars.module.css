@@ -1,0 +1,4 @@
+.carsContainer{
+    display: flex;
+    flex-wrap: wrap;
+}

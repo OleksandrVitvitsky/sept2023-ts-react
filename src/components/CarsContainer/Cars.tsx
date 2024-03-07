@@ -2,6 +2,7 @@ import {FC} from "react";
 
 import {ICar} from "../../interfaces";
 import {Car} from "./Car";
+import css from './Cars.module.css'
 
 
 interface IProps {
@@ -11,7 +12,7 @@ interface IProps {
 
 const Cars:FC<IProps> = ({cars}) => {
     return (
-        <div>
+        <div className={css.carsContainer}>
             {cars.map(car => <Car key={car.id} car={car}/>)}
         </div>
     );
